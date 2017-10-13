@@ -1,0 +1,24 @@
+{
+  "name": "stationf-test",
+  "version": "1.0.0",
+  "description": "Code test for Station F",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tbeldame/stationf-test.git"
+  },
+  "author": "Thomas Beldame",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tbeldame/stationf-test/issues"
+  },
+  "homepage": "https://github.com/tbeldame/stationf-test#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mongoose": "^4.12.1"
+  }
+}
