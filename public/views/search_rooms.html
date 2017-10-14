@@ -1,10 +1,10 @@
-<div class="" ng-controller="searchCtrl">
+<div class="">
 	<div ng-repeat="room in rooms">
 		<span>Name: {{room.name}}</span>
 		<span>Description: {{room.description}}</span>
 		<span>Capacity: {{room.capacity}}</span>
 		<span>Equipements: </span>
-		<span ng-repeat="equipement in equipements">{{equipement.name}}</span>
+		<span ng-repeat="equipement in room.equipements">{{equipement.name}},</span>
 		<br/>
 		<br/>
 	</div>
