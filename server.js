@@ -16,6 +16,56 @@ var getRooms = require('./routes/getrooms.js');
 
 //Routes
 app.get('/api/rooms', getRooms);
+app.get('/api/rooms2', function(req, res) {
+	console.log('getRooms2');
+var rooms = {
+		"rooms": [
+			{
+				"name": "Salle #1",
+				"description": "Salle #1",
+				"capacity": 5,
+				"equipements": [
+					{
+						"name": "TV"
+					},
+					{
+						"name": "Retro Projecteur"
+					}
+				],
+				"createdAt": "2016-12-07T12:39:29.812Z",
+				"updatedAt": "2016-12-08T17:31:39.489Z"
+			},
+			{
+				"name": "Salle #2",
+				"description": "Salle #2",
+				"capacity": 10,
+				"equipements": [
+					{
+						"name": "Retro Projecteur"
+					}
+				],
+				"createdAt": "2016-12-07T12:39:55.384Z",
+				"updatedAt": "2016-12-07T13:33:37.184Z"
+			},
+			{
+				"name": "Salle nulle",
+				"description": "Salle nulle",
+				"capacity": 26,
+				"equipements": [
+					{
+						"name": "TV"
+					},
+					{
+						"name": "Retro Projecteur"
+					}
+				],
+				"createdAt": "2016-12-09T16:45:49.096Z",
+				"updatedAt": "2016-12-09T16:45:49.096Z"
+			}
+		]
+	};
+	res.json(rooms);
+});
 //app.get('/api/reservation', getReservation);
 //app.post('/api/reservation', addReservation);
 //app.delete('/api/reservation', deleteReservation);
