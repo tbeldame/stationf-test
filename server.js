@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 var app = express();
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(express.static(__dirname + '/public'));
 
@@ -19,8 +20,7 @@ app.get('/api/rooms', getRooms);
 //app.post('/api/reservation', addReservation);
 //app.delete('/api/reservation', deleteReservation);
 
-app.use(function(req, res) {
-	console.log('what');
+app.get('*', function(req, res) {
 	res.sendFile(__dirname + '/public/index.html')
 });
 

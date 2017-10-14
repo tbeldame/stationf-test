@@ -11,8 +11,8 @@ stationfTest.config(function($routeProvider, $locationProvider) {
 		controller: 'searchCtrl',
 		templateUrl: 'views/search_rooms.html'
 	})
-	.when('/reservation', {
-		controller: 'reservationCtrl',
+	.when('/reservations', {
+		controller: 'reservationsCtrl',
 		templateUrl: 'views/reservations.html'
 	})
 	.otherwise({
