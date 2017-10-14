@@ -6,6 +6,8 @@ var app = express();
 
 app.use(bodyParser.json());
 
+app.use(express.static(__dirname + '/public'));
+
 //Routes files
 //Api
 var getRooms = require('./routes/getrooms.js');
