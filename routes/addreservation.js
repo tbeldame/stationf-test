@@ -8,8 +8,13 @@ module.exports = function (req, res) {
 	
 
 	console.log('addreservation');
-	var reservation = new Reservation({userId: '1', roomName: 'salle', date: Date.now()});
-	console.log(reservation);
+	console.log(req.body);
+
+	var reservation = new Reservation({
+		userId: req.body.userId,
+		roomName: req.body.roomName,
+		date: Date.now()
+	});
 
 	reservation.save(function (err) {
 		if (err) console.error(err);

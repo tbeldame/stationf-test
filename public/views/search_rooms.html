@@ -1,23 +1,24 @@
-<div class="">
-	<div class="filters" style="border: solid 1px black">
-		<span>Capacite</span><br/>
-		<input ng-mouseup="updateList()" ng-model="capacity" type="range" min="1" max="30" value="1" step="1"  class="slider" id="capacity"/>
-		<span>{{capacity}}</span><br/>
-		<span>Equipements</span><br/>
-		<input ng-change="updateList()" ng-model="tv" type="checkbox" id="tv"/>
-		<label for="tv">TV</label><br/>
-		<input ng-change="updateList()" ng-model="projector" type="checkbox" id="projector"/>
-		<label for="projector">Projecteur</label><br/>
-		<input ng-change="updateList()" ng-model="date" id="date" type="date">
-		<label for="date">Date</label><br/>
-		<select ng-change="updateList()" ng-model="time" ng-options="hour for hour in hours" id="hour"></select>
-		<label for="hour">Heure</label><br/>
+<div class="card filters">
+	<div class="card-content">
+		<label for="capacity">Capacite</span>
+		<input ng-mouseup="updateList()" ng-model="filters.capacity" type="range" min="1" max="30" value="1" step="1" id="capacity"/>
+		<span>{{filters.capacity}}</span>
+		<span>Equipements</span>
+		<input ng-change="updateList()" ng-model="filters.tv" type="checkbox" id="tv"/>
+		<label for="tv">TV</label>
+		<input ng-change="updateList()" ng-model="filters.projector" type="checkbox" id="projector"/>
+		<label for="projector">Projecteur</label>
+		<input ng-change="updateList()" ng-model="filters.date" id="date" type="date">
+		<label for="date">Date</label>
+		<select ng-change="updateList()" ng-model="filters.time" ng-options="hour for hour in hours" id="hour"></select>
+		<label for="hour">Heure</label>
 	</div>
-	<div ng-repeat="room in rooms" style="border: 1px solid #ff00cb">
-		<span>Name: {{room.name}}</span><br/>
-		<span>Description: {{room.description}}</span><br/>
-		<span>Capacity: {{room.capacity}}</span><br/>
-		<span>Equipements: </span><br/>
-		<span ng-repeat="equipement in room.equipements">{{equipement.name}},</span>
-	</div>
+</div>
+<div ng-repeat="room in rooms" style="border: 1px solid #ff00cb">
+	<span>Name: {{room.name}}</span><br/>
+	<span>Description: {{room.description}}</span><br/>
+	<span>Capacity: {{room.capacity}}</span><br/>
+	<span>Equipements: </span><br/>
+	<span ng-repeat="equipement in room.equipements">{{equipement.name}},</span><br/>
+	<input ng-click="addReservation({roomName: room.name, date: {date: filters.date, time: filters.time}})" type="button" value="reserver"/>
 </div>

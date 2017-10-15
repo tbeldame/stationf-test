@@ -14,14 +14,15 @@ app.use(express.static(__dirname + '/public'));
 
 //Routes files
 const getRooms = require('./routes/getrooms.js');
+const getReservation = require('./routes/getreservations.js');
 const addReservation = require('./routes/addreservation.js');
-//var deleteReservation = require('./routes/getrooms.js');
+const deleteReservation = require('./routes/deletereservation.js');
 
 //Routes
 app.get('/api/rooms', getRooms);
-//app.get('/api/reservation', getReservation);
+app.get('/api/reservation', getReservation);
 app.post('/api/reservation', addReservation);
-//app.delete('/api/reservation', deleteReservation);
+app.delete('/api/reservation', deleteReservation);
 
 app.get('*', function(req, res) {
 	res.sendFile(__dirname + '/public/index.html')

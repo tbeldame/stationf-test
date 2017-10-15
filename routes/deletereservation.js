@@ -16,9 +16,9 @@ function equipmentInRoom(roomEquipments, equipment) {
 function roomMatch(room, filters) {
 	if (filters.capacity > room.capacity)
 		return (false);
-	if (filters.projector === 'true' && !equipmentInRoom(room.equipements, 'Retro Projecteur'))
+	if (filters.projector && !equipmentInRoom(room.equipements, 'Retro Projecteur'))
 		return (false);
-	if (filters.tv === 'true' && !equipmentInRoom(room.equipements, 'TV'))
+	if (filters.tv && !equipmentInRoom(room.equipements, 'TV'))
 		return (false);
 	return (true);
 };

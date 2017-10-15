@@ -1,4 +1,4 @@
-var stationfTest = angular.module('stationfTest', ['ngRoute']);
+var stationfTest = angular.module('stationfTest', ['ngMaterial', 'ngRoute']);
 console.log('test');
 
 stationfTest.config(function($routeProvider, $locationProvider) {
