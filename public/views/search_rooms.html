@@ -1,19 +1,18 @@
 <div class="">
 	<div class="filters" style="border: solid 1px black">
 		<span>Capacite</span><br/>
-		<input ng-model="capacity" type="range" min="1" max="30" value="1" step="1"  class="slider" id="capacity"/>
+		<input ng-mouseup="updateList()" ng-model="capacity" type="range" min="1" max="30" value="1" step="1"  class="slider" id="capacity"/>
 		<span>{{capacity}}</span><br/>
 		<span>Equipements</span><br/>
-		<input ng-model="tv" type="checkbox" id="tv"/>
+		<input ng-change="updateList()" ng-model="tv" type="checkbox" id="tv"/>
 		<label for="tv">TV</label><br/>
-		<input ng-model="projector" type="checkbox" id="projector"/>
+		<input ng-change="updateList()" ng-model="projector" type="checkbox" id="projector"/>
 		<label for="projector">Projecteur</label><br/>
-		<input ng-model="date" id="date" type="date">
+		<input ng-change="updateList()" ng-model="date" id="date" type="date">
 		<label for="date">Date</label><br/>
-		<select ng-model="time" ng-options="hour for hour in hours" id="hour"></select>
+		<select ng-change="updateList()" ng-model="time" ng-options="hour for hour in hours" id="hour"></select>
 		<label for="hour">Heure</label><br/>
 	</div>
-	<input ng-click="testFct()" type="button" id="testBtn" value="btn"></input>
 	<div ng-repeat="room in rooms" style="border: 1px solid #ff00cb">
 		<span>Name: {{room.name}}</span><br/>
 		<span>Description: {{room.description}}</span><br/>

@@ -61,6 +61,18 @@ var rooms = {
 				],
 				"createdAt": "2016-12-09T16:45:49.096Z",
 				"updatedAt": "2016-12-09T16:45:49.096Z"
+			},
+			{
+				"name": "Salle propre",
+				"description": "Salle propre",
+				"capacity": 42,
+				"equipements": [
+					{
+						"name": "Retro Projecteur"
+					}
+				],
+				"createdAt": "2016-12-09T16:45:49.096Z",
+				"updatedAt": "2016-12-09T16:45:49.096Z"
 			}
 		]
 	};
