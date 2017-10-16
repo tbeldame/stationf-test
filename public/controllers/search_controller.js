@@ -38,13 +38,17 @@ stationfTest.controller('searchCtrl', function($scope, $filter, $http) {
 	$scope.addReservation = function(roomName) {
 		console.log(roomName);
 		$http.post('/api/reservations', {
-			params: {
-				roomName: roomName,
-				date: $filter('date')($scope.filters.date, 'yyyy-MM-dd'),
-				time: $scope.filters.time
-			}
+			roomName: roomName,
+			date: $filter('date')($scope.filters.date, 'yyyy-MM-dd'),
+			time: $scope.filters.time
 		})
 		.then(function success(response) {
+			$scope.rooms = [];
+			$scope.capacity = 1;
+			$scope.filters.tv = false;
+			$scope.filters.projector = false;
+			delete $scope.filters.date;
+			delete $scope.filters.time;
 			//should do something here
 		}, function error(response) {
 			console.error(response)

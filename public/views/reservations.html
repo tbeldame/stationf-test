@@ -1,7 +1,10 @@
 <div class="">
 	<div ng-repeat="reservation in reservations">
+		<span>Id: {{reservation._id}}</span>
 		<span>Room: {{reservation.roomName}}</span>
 		<span>Date: {{reservation.date}}</span>
+		<input ng-click="deleteReservation(reservation)" type="button" value="Annuler"/>
+		<br/>
 		<br/>
 		<br/>
 	</div>

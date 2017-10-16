@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 const Reservation = require(__dirname + '/../models/reservations.js');
 
 module.exports = function (req, res) {
-	//check the values (types)
-
-	console.log('getreservations');
-	console.log(req.query);
-
 	Reservation.find(function(err, reservations) {
-		res.json({reservations: reservations});
+		if (err) {
+			res.status(500);
+			res.json({error: "Internal Server Error", message: "Something went wrong"});
+		}
+		else
+			res.json({reservations: reservations});
 	});
 };

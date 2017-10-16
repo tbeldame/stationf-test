@@ -6,4 +6,17 @@ stationfTest.controller('reservationsCtrl', function($scope, $http) {
 	.then(function(response) {
 		$scope.reservations = response.data.reservations;
 	});
+
+
+	$scope.deleteReservation = function (reservation) {
+		console.log('a');
+		$http.delete('/api/reservations/' + reservation._id)
+		.then(function(response) {
+			var index = $scope.reservations.indexOf(reservation);
+			$scope.reservations.splice(index, 1);
+		});
+
+
+	};
+
 });
