@@ -6,9 +6,8 @@ const mongoose = require('mongoose');
 const Reservation = require(__dirname + '/../models/reservations.js');
 
 function formatDate(filters) {
-	console.log('date = ' + filters.date);
-    var resDate = new Date(filters.date);
-    var hour = parseInt(filters.time)
+    let resDate = new Date(filters.date);
+    let hour = parseInt(filters.time)
 	console.log(resDate);
     //manage the error in some way
     if (hour < 0 || hour > 23)
@@ -20,7 +19,7 @@ function formatDate(filters) {
 }
 
 function roomExists(name) {
-	for (var i = 0; i < rooms.length; i++) {
+	for (let i = 0; i < rooms.length; i++) {
 		if (rooms[i].name === name)
 			return (true);
 	}
@@ -36,7 +35,7 @@ module.exports = function (req, res) {
 		return (res.json({error: "Bad Request", message: "This room does not exist"}));
 	}
 
-	var resDate = formatDate(req.body);
+	let resDate = formatDate(req.body);
 	//check date is not false (in the past)
 	
 	Reservation.findOne({roomName: req.body.roomName, date: resDate}, function (err, result) {
@@ -52,7 +51,7 @@ module.exports = function (req, res) {
 			});
 		}
 		else {
-			var reservation = new Reservation({
+			let reservation = new Reservation({
 				roomName: req.body.roomName,
 				date: resDate
 			});

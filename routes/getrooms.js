@@ -2,11 +2,12 @@ const fs = require('fs');
 const path = require('path');
 const filePath = path.join(__dirname, '../private/rooms.json');
 const rooms = JSON.parse(fs.readFileSync(filePath, 'utf8')).rooms;
+const moment = require('moment');
 const mongoose = require('mongoose');
 const Reservation = require(__dirname + '/../models/reservations.js');
 
 function equipmentInRoom(roomEquipments, equipment) {
-	for (var i = 0; i < roomEquipments.length; i++) {
+	for (let i = 0; i < roomEquipments.length; i++) {
 		if (roomEquipments[i].name === equipment)
 			return (true);
 	}
@@ -24,14 +25,22 @@ function roomMatch(room, filters) {
 };
 
 function formatDate(filters) {
-	var resDate = new Date(filters.date);
-	var hour = parseInt(filters.time)
+	let datetest = moment(filters.date);
+	datetest.hour(parseInt(filters.time));
+	console.log(datetest);
+	console.log(datetest.isBefore(moment()));
+	/*let resDate = new Date(filters.date);
+	let hour = parseInt(filters.time)
 	//manage the error in some way
 	if (hour < 0 || hour > 23)
 		return (false)
 	resDate.setUTCHours(hour);
+	console.log('moment ' + moment());
+	console.log('moment' + moment(resDate.toISOString()).isBefore(moment()));
+	console.log(resDate < new Date());
 	console.log(resDate, new Date());
-	return (resDate);
+	return (resDate);*/
+	return (new Date());
 }
 
 function checkAvailability(res, rooms, date, index) {
@@ -54,10 +63,10 @@ function checkAvailability(res, rooms, date, index) {
 
 module.exports = function (req, res) {
 	//check the values (types)
-	var filteredRooms = [];
-	var resDate ;
+	let filteredRooms = [];
+	let resDate ;
 
-	for (var i = 0; i < rooms.length; i++) {
+	for (let i = 0; i < rooms.length; i++) {
 		if (roomMatch(rooms[i], req.query))
 			filteredRooms.push(rooms[i]);
 	}

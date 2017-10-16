@@ -9,7 +9,6 @@ module.exports = function (req, res) {
 			res.status(500);
 			res.json({error: "Internal Server Error", message: "Something went wrong"});
 		}
-		console.log(result); //null if nothing
 		if (!result) {
 			res.status(400);
 			res.json({error: "Bad Request", message: "This reservation does not exist"});
