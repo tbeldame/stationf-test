@@ -20,9 +20,9 @@ const deleteReservation = require('./routes/deletereservation.js');
 
 //Routes
 app.get('/api/rooms', getRooms);
-app.get('/api/reservation', getReservation);
-app.post('/api/reservation', addReservation);
-app.delete('/api/reservation', deleteReservation);
+app.get('/api/reservations', getReservation);
+app.post('/api/reservations', addReservation);
+app.delete('/api/reservations', deleteReservation);
 
 app.get('*', function(req, res) {
 	res.sendFile(__dirname + '/public/index.html')

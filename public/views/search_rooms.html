@@ -20,5 +20,5 @@
 	<span>Capacity: {{room.capacity}}</span><br/>
 	<span>Equipements: </span><br/>
 	<span ng-repeat="equipement in room.equipements">{{equipement.name}},</span><br/>
-	<input ng-click="addReservation({roomName: room.name, date: {date: filters.date, time: filters.time}})" type="button" value="reserver"/>
+	<input ng-click="addReservation(room.name)" type="button" value="reserver"/>
 </div>
