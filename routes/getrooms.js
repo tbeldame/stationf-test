@@ -30,6 +30,7 @@ function formatDate(filters) {
 	if (hour < 0 || hour > 23)
 		return (false)
 	resDate.setUTCHours(hour);
+	console.log(resDate, new Date());
 	return (resDate);
 }
 
@@ -37,10 +38,10 @@ function checkAvailability(res, rooms, date, index) {
 	if (index == rooms.length)
 		return (res.json({rooms: rooms}));
 	Reservation.find({roomName: rooms[index].name, date: date}, function (err, result) {
-		//manage error here 500?
-		
-		if (err) console.error(err);
-		
+		if (err) {
+			res.status(500);
+			res.json({error: "Internal Server Error", message: "Something went wrong"});
+		}
 		if (result.length > 0) {
 			rooms.splice(index, 1);
 			checkAvailability(res, rooms, date, index);
@@ -61,7 +62,8 @@ module.exports = function (req, res) {
 			filteredRooms.push(rooms[i]);
 	}
 	resDate = formatDate(req.query);
-	//check Date is not false
+	//check Date is not false (in the past)
+
 	if (filteredRooms.length == 0)
 		return (res.json({rooms: filteredRooms}));
 	else

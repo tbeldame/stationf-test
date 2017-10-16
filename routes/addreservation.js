@@ -1,9 +1,7 @@
 const fs = require('fs');
 const path = require('path');
-
 const filePath = path.join(__dirname, '../private/rooms.json');
 const rooms = JSON.parse(fs.readFileSync(filePath, 'utf8')).rooms;
-
 const mongoose = require('mongoose');
 const Reservation = require(__dirname + '/../models/reservations.js');
 
@@ -23,7 +21,7 @@ function formatDate(filters) {
 
 function roomExists(name) {
 	for (var i = 0; i < rooms.length; i++) {
-		if (room.name === name)
+		if (rooms[i].name === name)
 			return (true);
 	}
 	return (false);
@@ -41,12 +39,12 @@ module.exports = function (req, res) {
 	var resDate = formatDate(req.body);
 	//check date is not false (in the past)
 	
-	reservation.findOne({roomName: req.body.roomName, date: resDate}, function (err, result) {
+	Reservation.findOne({roomName: req.body.roomName, date: resDate}, function (err, result) {
 		if (err) {
 			res.status(500);
 			res.json({error: "Internal Server Error", message: "Something went wrong"});
 		}
-		else if (result.length > 0) {
+		else if (result && result.length > 0) {
 			res.status(409);
 			res.json({
 				error: "Conflict",
