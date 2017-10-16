@@ -13,12 +13,19 @@ function equipmentInRoom(roomEquipments, equipment) {
 	return (false);
 };
 
+function roomAvailable(room, filters) {
+	var resDate = filters.date;
+
+}
+
 function roomMatch(room, filters) {
 	if (filters.capacity > room.capacity)
 		return (false);
 	if (filters.projector === 'true' && !equipmentInRoom(room.equipements, 'Retro Projecteur'))
 		return (false);
 	if (filters.tv === 'true' && !equipmentInRoom(room.equipements, 'TV'))
+		return (false);
+	if (!roomAvailable(room, filters))
 		return (false);
 	return (true);
 };
@@ -35,6 +42,6 @@ module.exports = function (req, res) {
 		if (roomMatch(rooms[i], req.query))
 			filteredRooms.push(rooms[i]);
 	}
-	console.log(filteredRooms);
+	//console.log(filteredRooms);
 	res.json({rooms: filteredRooms});
 };

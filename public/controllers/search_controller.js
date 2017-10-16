@@ -1,6 +1,6 @@
 var stationfTest = angular.module('stationfTest');
 
-stationfTest.controller('searchCtrl', function($scope, $http) {
+stationfTest.controller('searchCtrl', function($scope, $filter, $http) {
 	console.log('search controller loaded');
 
 	$scope.filters = {
@@ -24,7 +24,7 @@ stationfTest.controller('searchCtrl', function($scope, $http) {
 				capacity: $scope.filters.capacity,
 				tv: $scope.filters.tv,
 				projector: $scope.filters.projector,
-				date: $scope.filters.date,
+				date: $filter('date')($scope.filters.date, 'yyyy-MM-dd'),
 				time: $scope.filters.time
 			}
 		})
@@ -40,7 +40,7 @@ stationfTest.controller('searchCtrl', function($scope, $http) {
 		$http.post('/api/reservations', {
 			params: {
 				roomName: roomName,
-				date: $scope.filters.date,
+				date: $filter('date')($scope.filters.date, 'yyyy-MM-dd'),
 				time: $scope.filters.time
 			}
 		})
