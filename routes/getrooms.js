@@ -25,6 +25,7 @@ function roomMatch(room, filters) {
 };
 
 function formatDate(filters) {
+	//check hour again
 	let datetest = moment(filters.date);
 	datetest.hour(parseInt(filters.time));
 	console.log(datetest);
