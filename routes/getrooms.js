@@ -43,6 +43,7 @@ function checkAvailability(res, rooms, date, index) {
 	Reservation.find({roomName: rooms[index].name, date: date}, function (err, result) {
 		if (err) {
 			res.status(500);
+			//something may be broken here
 			res.json({error: "Internal Server Error", message: "Something went wrong"});
 		}
 		if (result.length > 0) {
@@ -63,12 +64,12 @@ module.exports = function (req, res) {
 	resDate = formatDate(req.query);
 	if (!resDate) {
 		res.status(400);
-		res.json({error: "Bad Request", message: "Search date is invalid"});
+		return (res.json({error: "Bad Request", message: "Search date is invalid"}));
 	}
 	capacity = parseInt(req.query.capacity);
 	if (capacity > 30 || capacity < 1) {
 		res.status(400);
-		res.json({error: "Bad Request", message: "Search date is invalid"});
+		return (res.json({error: "Bad Request", message: "Search date is invalid"}));
 	}
 
 	//Getting rooms
