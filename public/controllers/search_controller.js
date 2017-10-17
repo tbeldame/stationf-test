@@ -36,7 +36,7 @@ stationfTest.controller('searchCtrl', function($scope, $filter, $http) {
 		.then(function success(response) {
 			$scope.rooms = [];
 			$scope.filters = {
-				capacity = 1,
+				capacity: 1,
 				tv: false,
 				projector: false
 			};
