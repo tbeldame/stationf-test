@@ -59,7 +59,6 @@ module.exports = function (req, res) {
 	let filteredRooms = [];
 	let resDate, capacity;
 
-	
 	//Fields checking
 	resDate = formatDate(req.query);
 	if (!resDate) {
