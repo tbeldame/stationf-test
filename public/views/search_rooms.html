@@ -1,24 +1,54 @@
-<div class="card filters">
-	<div class="card-content">
-		<label for="capacity">Capacite</span>
-		<input ng-mouseup="updateList()" ng-model="filters.capacity" type="range" min="1" max="30" value="1" step="1" id="capacity"/>
-		<span>{{filters.capacity}}</span>
-		<span>Equipements</span>
-		<input ng-change="updateList()" ng-model="filters.tv" type="checkbox" id="tv"/>
-		<label for="tv">TV</label>
-		<input ng-change="updateList()" ng-model="filters.projector" type="checkbox" id="projector"/>
-		<label for="projector">Projecteur</label>
-		<input ng-change="updateList()" ng-model="filters.date" ng-model-options="{timzone:'UTC'}" id="date" type="date">
-		<label for="date">Date</label>
-		<select ng-change="updateList()" ng-model="filters.time" ng-options="hour for hour in hours" id="hour"></select>
-		<label for="hour">Heure</label>
-	</div>
-</div>
-<div ng-repeat="room in rooms" style="border: 1px solid #ff00cb">
-	<span>Name: {{room.name}}</span><br/>
-	<span>Description: {{room.description}}</span><br/>
-	<span>Capacity: {{room.capacity}}</span><br/>
-	<span>Equipements: </span><br/>
-	<span ng-repeat="equipement in room.equipements">{{equipement.name}},</span><br/>
-	<input ng-click="addReservation(room.name)" type="button" value="reserver"/>
-</div>
+<md-card>
+	<md-card-title>
+		<md-card-title-text>
+			<span class="md-headline">Recherche</span>
+		</md-card-title-text>
+	</md-card-title>
+	<md-card-content layout="row">
+		<div layout="column" flex="50">
+			<span>Capacite</span>
+			<md-slider-container>
+				<md-slider flex="60" ng-mouseup="updateList()" ng-model="filters.capacity" min="1" max="30" step="1" aria-label="capacity" id="capacitySlider"></md-slider>
+				</md-slider>
+				<md-input-container>
+					<input flex type="number" ng-model="filters.capacity" aria-label="capacity" aria-controls="capacity">
+				</md-input-container>
+			</md-slider-container>
+			<span>Equipements</span>
+			<md-checkbox ng-change="updateList()" ng-model="filters.tv" aria-label="tv">
+				  TV
+			</md-checkbox>
+			<md-checkbox ng-change="updateList()" ng-model="filters.projector" aria-label="tv">
+				  Retro Projecteur
+			</md-checkbox>
+		</div>
+		<div layout="column" flex="50">
+			<md-datepicker ng-change="updateList()" ng-model="filters.date" md-placeholder="Date" md-min-date="minDate"></md-datepicker>
+			<md-input-container>
+				<label>Heure</label>
+				<md-select ng-model="filters.time" ng-change="updateList()">
+					<md-option ng-repeat="hour in hours" ng-value="hour">{{hour}}</md-option>
+				</md-select>
+			</md-input-container>
+		</div>
+	</md-card-content>
+</md-card>
+
+<span ng-show="noRooms" layout-align="center">Aucune salle n'est disponible pour votre recherche</span>
+
+<md-card ng-repeat="room in rooms">
+	<md-card-title>
+		<md-card-title-text>
+			<span class="md-headline">{{room.name}}</span>
+			<span class="md-subhead">{{room.description}}</span>
+		</md-card-title-text>
+	</md-card-title>
+	<md-card-content>
+		<p><md-icon>people</md-icon>{{room.capacity}}</p>
+		<md-icon ng-show="hasTv(room.equipements)">tv</md-icon>
+		<md-icon ng-show="hasProjector(room.equipements)">videocam</md-icon>
+	</md-card-content>
+	<md-card-actions layout="row" layout-align="end center">
+		<md-button ng-click="addReservation(room)">Reserver</md-button>
+	</md-card-actions>
+</md-card>

@@ -1,11 +1,9 @@
-<div class="">
-	<div ng-repeat="reservation in reservations">
-		<span>Id: {{reservation._id}}</span>
-		<span>Room: {{reservation.roomName}}</span>
-		<span>Date: {{reservation.date}}</span>
-		<input ng-click="deleteReservation(reservation)" type="button" value="Annuler"/>
-		<br/>
-		<br/>
-		<br/>
-	</div>
-</div>
+<md-card ng-repeat="reservation in reservations">
+	<md-card-content>
+		<h2>{{reservation.roomName}}</h2>
+		<p>{{reservation.date | date : "dd/MM/yyyy HH:mm"}}</p>
+	</md-card-content>
+	<md-card-actions layout="row" layout-align="end center">
+		<md-button ng-click="deleteReservation(reservation)" >Annuler</md-button>
+	</md-card-actions>
+</md-card>

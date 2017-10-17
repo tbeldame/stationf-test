@@ -69,7 +69,7 @@ module.exports = function (req, res) {
 	capacity = parseInt(req.query.capacity);
 	if (capacity > 30 || capacity < 1) {
 		res.status(400);
-		return (res.json({error: "Bad Request", message: "Search date is invalid"}));
+		return (res.json({error: "Bad Request", message: "Capacity is invalid"}));
 	}
 
 	//Getting rooms

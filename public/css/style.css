@@ -1,0 +1,13 @@
+body {
+	background-color: #fafafa;
+}
+
+#topBar {
+	background-color: #212121;
+	text-align: center;
+}
+
+#imgLogo {
+	width: 150px;
+	height: 64px;
+}

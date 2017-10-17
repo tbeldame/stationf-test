@@ -1,6 +1,6 @@
 var stationfTest = angular.module('stationfTest', ['ngRoute', 'ngMaterial']);
 
-stationfTest.config(function($routeProvider, $locationProvider) {
+stationfTest.config(function($routeProvider, $locationProvider, $mdDateLocaleProvider) {
 	$routeProvider.when('/', {
 		controller: 'homeCtrl',
 		templateUrl: 'views/home.html'
@@ -18,4 +18,8 @@ stationfTest.config(function($routeProvider, $locationProvider) {
 	});
 
 	$locationProvider.html5Mode(true);
+
+	$mdDateLocaleProvider.formatDate = function(date) {
+		return (date ? moment(date).format('DD/MM/YYYY') : 'Date');
+	};
 });
