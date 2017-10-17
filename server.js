@@ -9,9 +9,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(express.static(__dirname + '/public'));
 
-//Mongoose models
-
-
 //Routes files
 const getRooms = require('./routes/getrooms.js');
 const getReservation = require('./routes/getreservations.js');
@@ -28,6 +25,6 @@ app.get('*', function(req, res) {
 	res.sendFile(__dirname + '/public/index.html')
 });
 
-
 app.listen(3001);
+
 console.log('Started');
