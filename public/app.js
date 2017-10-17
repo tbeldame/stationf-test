@@ -1,8 +1,6 @@
 var stationfTest = angular.module('stationfTest', ['ngRoute']);
-console.log('test');
 
 stationfTest.config(function($routeProvider, $locationProvider) {
-	console.log('app');
 	$routeProvider.when('/', {
 		controller: 'homeCtrl',
 		templateUrl: 'views/home.html'
