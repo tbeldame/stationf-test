@@ -25,23 +25,16 @@ function roomMatch(room, filters) {
 };
 
 function formatDate(filters) {
-	//check hour again
-	let datetest = moment(filters.date);
-	datetest.hour(parseInt(filters.time));
-	console.log(datetest);
-	console.log(datetest.isBefore(moment()));
-	/*let resDate = new Date(filters.date);
-	let hour = parseInt(filters.time)
-	//manage the error in some way
-	if (hour < 0 || hour > 23)
-		return (false)
-	resDate.setUTCHours(hour);
-	console.log('moment ' + moment());
-	console.log('moment' + moment(resDate.toISOString()).isBefore(moment()));
-	console.log(resDate < new Date());
-	console.log(resDate, new Date());
-	return (resDate);*/
-	return (new Date());
+	let hours = parseInt(filters.time);
+	if (hours < 0 || hours > 23)
+		return (false);
+	let resDate = moment(filters.date);
+	if (!resDate.isValid())
+		return (false);
+	resDate.hour(parseInt(filters.time));
+	if (resDate.isBefore(moment()))
+		return (false);
+	return (resDate);
 }
 
 function checkAvailability(res, rooms, date, index) {
@@ -63,17 +56,27 @@ function checkAvailability(res, rooms, date, index) {
 }
 
 module.exports = function (req, res) {
-	//check the values (types)
 	let filteredRooms = [];
-	let resDate ;
+	let resDate, capacity;
 
+	
+	//Fields checking
+	resDate = formatDate(req.query);
+	if (!resDate) {
+		res.status(400);
+		res.json({error: "Bad Request", message: "Search date is invalid"});
+	}
+	capacity = parseInt(req.query.capacity);
+	if (capacity > 30 || capacity < 1) {
+		res.status(400);
+		res.json({error: "Bad Request", message: "Search date is invalid"});
+	}
+
+	//Getting rooms
 	for (let i = 0; i < rooms.length; i++) {
 		if (roomMatch(rooms[i], req.query))
 			filteredRooms.push(rooms[i]);
 	}
-	resDate = formatDate(req.query);
-	//check Date is not false (in the past)
-
 	if (filteredRooms.length == 0)
 		return (res.json({rooms: filteredRooms}));
 	else
