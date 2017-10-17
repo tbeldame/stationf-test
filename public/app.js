@@ -1,4 +1,4 @@
-var stationfTest = angular.module('stationfTest', ['ngRoute']);
+var stationfTest = angular.module('stationfTest', ['ngRoute', 'ngMaterial']);
 
 stationfTest.config(function($routeProvider, $locationProvider) {
 	$routeProvider.when('/', {
