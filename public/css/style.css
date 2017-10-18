@@ -2,12 +2,50 @@ body {
 	background-color: #fafafa;
 }
 
-#topBar {
-	background-color: #212121;
-	text-align: center;
-}
-
 #imgLogo {
 	width: 150px;
 	height: 64px;
+}
+
+#homeBtns {
+	margin-top: 50px;
+}
+
+#filtersCard {
+	margin-bottom: 30px;
+}
+
+#filterCardTitle {
+	padding: 16px 16px 16px !important;
+	margin-bottom: 20px;
+}
+
+.filterTitle {
+	margin-bottom: 10px;
+}
+
+#hourIcon {
+	margin-left: 12px;
+	color: #757575;
+}
+
+#hour {
+	width: 120px;
+	margin-left: 26px;
+}
+
+#noRooms {
+	display: inline-block;
+	width: 100%;
+	margin-top: 50px;
+	text-align: center;
+	color: #757575;
+}
+
+md-toast.md-success-toast-theme .md-toast-content {
+	background-color: #4CAF50;
+}
+
+md-toast.md-error-toast-theme .md-toast-content {
+	background-color: #F44336;
 }

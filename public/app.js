@@ -1,6 +1,6 @@
 var stationfTest = angular.module('stationfTest', ['ngRoute', 'ngMaterial']);
 
-stationfTest.config(function($routeProvider, $locationProvider, $mdDateLocaleProvider) {
+stationfTest.config(function($routeProvider, $locationProvider, $mdDateLocaleProvider, $mdThemingProvider) {
 	$routeProvider.when('/', {
 		controller: 'homeCtrl',
 		templateUrl: 'views/home.html'
@@ -22,4 +22,11 @@ stationfTest.config(function($routeProvider, $locationProvider, $mdDateLocalePro
 	$mdDateLocaleProvider.formatDate = function(date) {
 		return (date ? moment(date).format('DD/MM/YYYY') : 'Date');
 	};
+
+	$mdThemingProvider.theme('default')
+		.primaryPalette('grey', {'default': '900'})
+		.accentPalette('deep-purple', {'default': '900'})
+
+	$mdThemingProvider.theme('success-toast')
+	$mdThemingProvider.theme('error-toast')
 });

@@ -22,7 +22,6 @@ stationfTest.controller('searchCtrl', function($scope, $filter, $http, $mdToast)
 				return (true);
 		}
 		return (false);
-
 	};
 
 	$scope.updateList = function() {
@@ -45,7 +44,14 @@ stationfTest.controller('searchCtrl', function($scope, $filter, $http, $mdToast)
 			else
 				$scope.noRooms = false;
 		}, function error(response) {
-			alert('error');
+			$scope.rooms = [];
+			$mdToast.show(
+				$mdToast.simple()
+				.theme('error-toast')
+				.position('top right')
+				.textContent('Une erreur est survenue')
+				.hideDelay(3000)
+			);
 		});
 	};
 
@@ -56,10 +62,11 @@ stationfTest.controller('searchCtrl', function($scope, $filter, $http, $mdToast)
 			time: $scope.filters.time
 		})
 		.then(function success(response) {
-			//confirmation toast
 			$mdToast.show(
 				$mdToast.simple()
-				.textContent('Salle reservee avec succes')
+				.theme('success-toast')
+				.position('top right')
+				.textContent('Votre reservation a ete enregistree')
 				.hideDelay(3000)
 			);
 			var index = $scope.rooms.indexOf(room);
@@ -67,7 +74,13 @@ stationfTest.controller('searchCtrl', function($scope, $filter, $http, $mdToast)
 			if ($scope.rooms.length === 0)
 				$scope.noRooms = true;
 		}, function error(response) {
-			console.error(response)
+			$mdToast.show(
+				$mdToast.simple()
+				.theme('error-toast')
+				.position('top right')
+				.textContent('Une erreur est survenue')
+				.hideDelay(3000)
+			);
 		});
 	};
 });

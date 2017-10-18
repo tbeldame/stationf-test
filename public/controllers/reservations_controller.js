@@ -1,6 +1,6 @@
 var stationfTest = angular.module('stationfTest');
 
-stationfTest.controller('reservationsCtrl', function($scope, $http) {
+stationfTest.controller('reservationsCtrl', function($scope, $http, $mdToast) {
 	$http.get('/api/reservations')
 	.then(function success(response) {
 			$scope.reservations = response.data.reservations;
@@ -13,8 +13,21 @@ stationfTest.controller('reservationsCtrl', function($scope, $http) {
 		.then(function success(response) {
 			var index = $scope.reservations.indexOf(reservation);
 			$scope.reservations.splice(index, 1);
+			$mdToast.show(
+				$mdToast.simple()
+				.theme('success-toast')
+				.position('top right')
+				.textContent('Cette reservation a bien ete annulee')
+				.hideDelay(3000)
+			);
 		}, function error(response) {
-			console.error(response)
+			$mdToast.show(
+				$mdToast.simple()
+				.theme('error-toast')
+				.position('top right')
+				.textContent('Une erreur est survenue')
+				.hideDelay(3000)
+			);
 		});
 	};
 });
