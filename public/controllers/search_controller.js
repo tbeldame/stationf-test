@@ -9,7 +9,7 @@ stationfTest.controller('searchCtrl', function($scope, $filter, $http, $mdToast)
 	$scope.hours = ['00h', '01h', '02h', '03h', '04h', '05h', '06h', '07h', '08h', '09h', '10h', '11h', '12h', '13h', '14h', '15h', '16h', '17h', '18h', '19h', '20h', '21h', '22h', '23h'];
 
 	$scope.hasTv = function (equipements) {
-		for (var i = 0; i < equipements.length; i++) {
+		for (let i = 0; i < equipements.length; i++) {
 			if (equipements[i].name === 'TV')
 				return (true);
 		}
@@ -17,7 +17,7 @@ stationfTest.controller('searchCtrl', function($scope, $filter, $http, $mdToast)
 	};
 
 	$scope.hasProjector = function (equipements) {
-		for (var i = 0; i < equipements.length; i++) {
+		for (let i = 0; i < equipements.length; i++) {
 			if (equipements[i].name === 'Retro Projecteur')
 				return (true);
 		}
@@ -69,7 +69,7 @@ stationfTest.controller('searchCtrl', function($scope, $filter, $http, $mdToast)
 				.textContent('Votre reservation a ete enregistree')
 				.hideDelay(3000)
 			);
-			var index = $scope.rooms.indexOf(room);
+			let index = $scope.rooms.indexOf(room);
 			$scope.rooms.splice(index, 1);
 			if ($scope.rooms.length === 0)
 				$scope.noRooms = true;

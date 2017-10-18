@@ -23,7 +23,7 @@ stationfTest.controller('reservationsCtrl', function($scope, $http, $mdToast) {
 	$scope.deleteReservation = function (reservation) {
 		$http.delete('/api/reservations/' + reservation._id)
 		.then(function success(response) {
-			var index = $scope.reservations.indexOf(reservation);
+			let index = $scope.reservations.indexOf(reservation);
 			$scope.reservations.splice(index, 1);
 			$mdToast.show(
 				$mdToast.simple()
@@ -32,6 +32,8 @@ stationfTest.controller('reservationsCtrl', function($scope, $http, $mdToast) {
 				.textContent('Cette reservation a bien ete annulee')
 				.hideDelay(3000)
 			);
+			if ($scope.reservations.length === 0)
+				$scope.noReservations = true;
 		}, function error(response) {
 			$mdToast.show(
 				$mdToast.simple()
