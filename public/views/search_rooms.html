@@ -4,8 +4,8 @@
 			<span class="md-headline">Recherche</span>
 		</md-card-title-text>
 	</md-card-title>
-	<md-card-content layout="row">
-		<div layout="column" flex="50">
+	<md-card-content layout-xs="column" layout="row">
+		<div layout="column" class="filterPart">
 			<span>Capacite</span>
 			<md-slider-container>
 				<md-slider flex="60" ng-mouseup="updateList()" ng-model="filters.capacity" min="1" max="30" step="1" aria-label="capacity" id="capacitySlider"></md-slider>
@@ -22,7 +22,7 @@
 				  Retro Projecteur
 			</md-checkbox>
 		</div>
-		<div layout="column" flex="50">
+		<div layout="column" class="filterPart">
 			<md-datepicker ng-change="updateList()" ng-model="filters.date" md-placeholder="Date" md-min-date="minDate"></md-datepicker>
 			<md-input-container>
 				<md-icon id="hourIcon">access_time</md-icon>

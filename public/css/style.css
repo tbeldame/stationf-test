@@ -49,3 +49,21 @@ md-toast.md-success-toast-theme .md-toast-content {
 md-toast.md-error-toast-theme .md-toast-content {
 	background-color: #F44336;
 }
+
+.filterPart {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1 1 100%;
+	flex: 1 1 100%;
+	box-sizing: border-box;
+	max-width: 50%;
+	max-height: 100%;
+}
+
+@media (max-width: 600px) {
+	.filterPart {
+		-webkit-box-flex: 0;
+		-webkit-flex: 0 1 auto;
+		flex: 0 1 auto;
+		box-sizing: border-box;
+	}
+}
