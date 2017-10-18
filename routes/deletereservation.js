@@ -7,10 +7,11 @@ module.exports = function (req, res) {
 			res.status(500);
 			res.json({error: "Internal Server Error", message: "Something went wrong"});
 		}
-		if (!result) {
+		else if (!result) {
 			res.status(400);
 			res.json({error: "Bad Request", message: "This reservation does not exist"});
 		}
-		res.json({message: 'done'});
+		else
+			res.json({message: 'done'});
 	});
 };

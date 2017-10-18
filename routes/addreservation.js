@@ -36,7 +36,7 @@ module.exports = function (req, res) {
 	let resDate = formatDate(req.body);
 	if (!resDate) {
 		res.status(400);
-		res.json({error: "Bad Request", message: "Reservation date is invalid"});
+		return (res.json({error: "Bad Request", message: "Reservation date is invalid"}));
 	}
 	Reservation.findOne({roomName: req.body.roomName, date: resDate}, function (err, result) {
 		if (err) {

@@ -43,7 +43,6 @@ function checkAvailability(res, rooms, date, index) {
 	Reservation.find({roomName: rooms[index].name, date: date}, function (err, result) {
 		if (err) {
 			res.status(500);
-			//something may be broken here
 			res.json({error: "Internal Server Error", message: "Something went wrong"});
 		}
 		if (result.length > 0) {
