@@ -43,7 +43,7 @@ module.exports = function (req, res) {
 			res.status(500);
 			res.json({error: "Internal Server Error", message: "Something went wrong"});
 		}
-		else if (result && result.length > 0) {
+		else if (result) {
 			res.status(409);
 			res.json({
 				error: "Conflict",
